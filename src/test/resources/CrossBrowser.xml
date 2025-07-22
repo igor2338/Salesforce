@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Salesforce CrossBrowser" thread-count="2" parallel="tests">
+    <listeners>
+        <listener class-name="tests.TestListener"/>
+        <listener class-name="tests.AnnotationTransformer"/>
+    </listeners>
+    <test name="chrome">
+        <classes>
+            <class name="tests.GeneralTest"/>
+            <parameter name="browser" value="chrome"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="edge">
+        <classes>
+            <class name="tests.BaseTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite>
