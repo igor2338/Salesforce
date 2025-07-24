@@ -7,13 +7,13 @@
     </listeners>
     <test name="chrome">
         <classes>
-            <class name="tests.GeneralTest"/>
+            <class name="tests.CreateAccountTest"/>
             <parameter name="browser" value="chrome"/>
         </classes>
     </test> <!-- Test -->
     <test name="edge">
         <classes>
-            <class name="tests.BaseTest"/>
+            <class name="tests.CreateAccountTest"/>
         </classes>
     </test> <!-- Test -->
 </suite>

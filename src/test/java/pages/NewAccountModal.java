@@ -23,23 +23,39 @@ public class NewAccountModal extends BasePage {
     }
 
     @Step("Заполнение AccountModal")
-    public void createAccount(String newAccountName) {
-        new Picklist(driver, "Rating").select("Hot");
-        new Picklist(driver, "Type").select("Prospect");
-        new Picklist(driver, "Industry").select("Apparel");
-        new Picklist(driver, "Ownership").select("Public");
+    public void createAccount(String rating,
+                              String type,
+                              String industry,
+                              String ownership,
+                              String newAccountName,
+                              String phone,
+                              String fax,
+                              String accountNumber,
+                              String website,
+                              String accountSite,
+                              String tickerSymbol,
+                              String employees,
+                              String annualRevenue,
+                              String sicCode,
+                              String billingStreet,
+                              String shippingStreet
+    ) {
+        new Picklist(driver, "Rating").select(rating);
+        new Picklist(driver, "Type").select(type);
+        new Picklist(driver, "Industry").select(industry);
+        new Picklist(driver, "Ownership").select(ownership);
         new Input(driver, "Account Name").write(newAccountName);
-        new Input(driver, "Phone").write("+79292491488");
-        new Input(driver, "Fax").write("+792924914599");
-        new Input(driver, "Account Number").write("123");
-        new Input(driver, "Website").write("www.yahoo.com");
-        new Input(driver, "Account Site").write("userTest");
-        new Input(driver, "Ticker Symbol").write("312");
-        new Input(driver, "Employees").write("324");
-        new Input(driver, "Annual Revenue").write("11");
-        new Input(driver, "SIC Code").write("11");
-        new Textarea(driver, "Billing Street").write("Textarea 1");
-        new Textarea(driver, "Shipping Street").write("Textarea 2");
+        new Input(driver, "Phone").write(phone);
+        new Input(driver, "Fax").write(fax);
+        new Input(driver, "Account Number").write(accountNumber);
+        new Input(driver, "Website").write(website);
+        new Input(driver, "Account Site").write(accountSite);
+        new Input(driver, "Ticker Symbol").write(tickerSymbol);
+        new Input(driver, "Employees").write(employees);
+        new Input(driver, "Annual Revenue").write(annualRevenue);
+        new Input(driver, "SIC Code").write(sicCode);
+        new Textarea(driver, "Billing Street").write(billingStreet);
+        new Textarea(driver, "Shipping Street").write(shippingStreet);
         new Checkbox(driver, "VIP Client").clicking();
         new Checkbox(driver, "TeachMeSkills").clicking();
         driver.findElement(By.xpath("//button[text()='Save']")).click();
