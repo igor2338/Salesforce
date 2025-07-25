@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Textarea {
+    String textareaPattern = "//label[text()='%s']//ancestor::records-record-layout-item//textarea";
+
     WebDriver driver;
     String label;
 
@@ -13,6 +15,6 @@ public class Textarea {
     }
 
     public void write(String text) {
-        driver.findElement(By.xpath(String.format("//label[text()='%s']//ancestor::records-record-layout-item//textarea", label))).sendKeys(text);
+        driver.findElement(By.xpath(String.format(textareaPattern, label))).sendKeys(text);
     }
 }

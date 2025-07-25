@@ -5,40 +5,51 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import wrappers.Checkbox;
 import wrappers.Input;
 import wrappers.Picklist;
 import wrappers.Textarea;
 
 public class NewAccountModal extends BasePage {
-    public final By TITLE = By.xpath("//img[@alt='User']");
+    String URL = BASE_URL + "/lighting/o/Account/new";
+    public final By TITLE = By.cssSelector(".uiImage");
 
     public NewAccountModal(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Открытие модального окна создания аккаунта")
+    @Override
+    public NewAccountModal open() {
+        driver.get(URL);
+        return this;
+    }
+
     @Step("Отображение элемента на странице")
-    public boolean isPageOpened() {
-        return driver.findElement(TITLE).isDisplayed();
+    @Override
+    public NewAccountModal isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
+        return this;
     }
 
     @Step("Заполнение AccountModal")
-    public void createAccount(String rating,
-                              String type,
-                              String industry,
-                              String ownership,
-                              String newAccountName,
-                              String phone,
-                              String fax,
-                              String accountNumber,
-                              String website,
-                              String accountSite,
-                              String tickerSymbol,
-                              String employees,
-                              String annualRevenue,
-                              String sicCode,
-                              String billingStreet,
-                              String shippingStreet
+    public AccountPage createAccount(String rating,
+                                     String type,
+                                     String industry,
+                                     String ownership,
+                                     String newAccountName,
+                                     String phone,
+                                     String fax,
+                                     String accountNumber,
+                                     String website,
+                                     String accountSite,
+                                     String tickerSymbol,
+                                     String employees,
+                                     String annualRevenue,
+                                     String sicCode,
+                                     String billingStreet,
+                                     String shippingStreet
     ) {
         new Picklist(driver, "Rating").select(rating);
         new Picklist(driver, "Type").select(type);
@@ -59,5 +70,6 @@ public class NewAccountModal extends BasePage {
         new Checkbox(driver, "VIP Client").clicking();
         new Checkbox(driver, "TeachMeSkills").clicking();
         driver.findElement(By.xpath("//button[text()='Save']")).click();
+        return new AccountPage(driver);
     }
 }

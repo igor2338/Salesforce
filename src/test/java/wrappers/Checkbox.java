@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Checkbox {
+    String checkoboxPattern = "//span[text()='%s']//ancestor::records-record-layout-row//input";
+
     WebDriver driver;
     String lable;
 
@@ -13,6 +15,6 @@ public class Checkbox {
     }
 
     public void clicking() {
-        driver.findElement(By.xpath(String.format("//span[text()='%s']//ancestor::records-record-layout-row//input", lable))).click();
+        driver.findElement(By.xpath(String.format(checkoboxPattern, lable))).click();
     }
 }

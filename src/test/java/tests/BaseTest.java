@@ -8,10 +8,7 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import pages.AccountPage;
-import pages.LoginPage;
-import pages.MainPage;
-import pages.NewAccountModal;
+import pages.*;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -25,6 +22,7 @@ public class BaseTest {
     SoftAssert softAssert;
     LoginPage loginPage;
     AccountPage accountPage;
+    HomePage homePage;
     MainPage mainPage;
     NewAccountModal newAccountModal;
 
@@ -54,6 +52,7 @@ public class BaseTest {
         softAssert = new SoftAssert();
         loginPage = new LoginPage(driver);
         accountPage = new AccountPage(driver);
+        homePage = new HomePage(driver);
         mainPage = new MainPage(driver);
         newAccountModal = new NewAccountModal(driver);
     }

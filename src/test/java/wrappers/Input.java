@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Input {
+    String inputPattern = "//label[text()='%s']//ancestor::lightning-input//input";
+
     WebDriver driver;
     String label;
 
@@ -13,6 +15,6 @@ public class Input {
     }
 
     public void write(String text) {
-        driver.findElement(By.xpath(String.format("//label[text()='%s']//ancestor::lightning-input//input", label))).sendKeys(text);
+        driver.findElement(By.xpath(String.format(inputPattern, label))).sendKeys(text);
     }
 }
