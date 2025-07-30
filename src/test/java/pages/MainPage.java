@@ -28,7 +28,7 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("Создание нового аккаунта. Кнопка New")
+    @Step("Клик кнопки New")
     public NewAccountModal createNewAccount() {
         driver.findElement(TITLE).click();
         return new NewAccountModal(driver);

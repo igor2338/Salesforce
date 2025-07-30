@@ -1,7 +1,11 @@
 package tests;
 
+import dto.Account;
+import dto.AccountFactory;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
+
+import static dto.AccountFactory.getAccount;
 
 public class CreateAccountTest extends BaseTest {
 
@@ -19,6 +23,13 @@ public class CreateAccountTest extends BaseTest {
     @Issue("ITM-4-Salesforce")
     @Description("Авторизация, создание аккаунта, проверка созданного аккаунта")
     public void checkAuthentification() {
+        Account account = getAccount("Hot",
+                "Prospect",
+                "Apparel",
+                "Public",
+                "312",
+                "324",
+                "11");
         loginPage.open()
                 .isPageOpened()
                 .login("tborodich@tms.sandbox", "Password003!");
@@ -26,26 +37,9 @@ public class CreateAccountTest extends BaseTest {
         mainPage.open()
                 .isPageOpened()
                 .createNewAccount();
-        newAccountModal.open()
-                .isPageOpened()
-                .createAccount("Hot",
-                        "Prospect",
-                        "Apparel",
-                        "Public",
-                        "test199",
-                        "+79292491488",
-                        "+792924914599",
-                        "123",
-                        "www.yahoo.com",
-                        "userTest",
-                        "312",
-                        "324",
-                        "11",
-                        "11",
-                        "Textarea 1",
-                        "Textarea 2");
-        accountPage.open()
-                .isPageOpened()
-                .getPopupMessage("test11");
+        newAccountModal.isPageOpened()
+                .createAccount(account);
+        accountPage.isPageOpened()
+                .getPopupMessage(account.getName());
     }
 }

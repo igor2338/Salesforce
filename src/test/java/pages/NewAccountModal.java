@@ -1,5 +1,6 @@
 package pages;
 
+import dto.Account;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -34,42 +35,26 @@ public class NewAccountModal extends BasePage {
     }
 
     @Step("Заполнение AccountModal")
-    public AccountPage createAccount(String rating,
-                                     String type,
-                                     String industry,
-                                     String ownership,
-                                     String newAccountName,
-                                     String phone,
-                                     String fax,
-                                     String accountNumber,
-                                     String website,
-                                     String accountSite,
-                                     String tickerSymbol,
-                                     String employees,
-                                     String annualRevenue,
-                                     String sicCode,
-                                     String billingStreet,
-                                     String shippingStreet
-    ) {
-        new Picklist(driver, "Rating").select(rating);
-        new Picklist(driver, "Type").select(type);
-        new Picklist(driver, "Industry").select(industry);
-        new Picklist(driver, "Ownership").select(ownership);
-        new Input(driver, "Account Name").write(newAccountName);
-        new Input(driver, "Phone").write(phone);
-        new Input(driver, "Fax").write(fax);
-        new Input(driver, "Account Number").write(accountNumber);
-        new Input(driver, "Website").write(website);
-        new Input(driver, "Account Site").write(accountSite);
-        new Input(driver, "Ticker Symbol").write(tickerSymbol);
-        new Input(driver, "Employees").write(employees);
-        new Input(driver, "Annual Revenue").write(annualRevenue);
-        new Input(driver, "SIC Code").write(sicCode);
-        new Textarea(driver, "Billing Street").write(billingStreet);
-        new Textarea(driver, "Shipping Street").write(shippingStreet);
+    public void createAccount(Account account) {
+        new Picklist(driver, "Rating").select(account.getRating());
+        new Picklist(driver, "Type").select(account.getType());
+        new Picklist(driver, "Industry").select(account.getIndustry());
+        new Picklist(driver, "Ownership").select(account.getOwnership());
+        new Input(driver, "Account Name").write(account.getName());
+        new Input(driver, "Phone").write(account.getPhone());
+        new Input(driver, "Fax").write(account.getFax());
+        new Input(driver, "Account Number").write(account.getAccountNumber());
+        new Input(driver, "Website").write(account.getWebsite());
+        new Input(driver, "Account Site").write(account.getAccountSite());
+        new Input(driver, "Ticker Symbol").write(account.getTickerSymbol());
+        new Input(driver, "Employees").write(account.getEmployees());
+        new Input(driver, "Annual Revenue").write(account.getAnnualRevenue());
+        new Input(driver, "SIC Code").write(account.getSicCode());
+        new Textarea(driver, "Billing Street").write(account.getBillingStreet());
+        new Textarea(driver, "Shipping Street").write(account.getShippingStreet());
         new Checkbox(driver, "VIP Client").clicking();
         new Checkbox(driver, "TeachMeSkills").clicking();
         driver.findElement(By.xpath("//button[text()='Save']")).click();
-        return new AccountPage(driver);
+        new AccountPage(driver);
     }
 }
